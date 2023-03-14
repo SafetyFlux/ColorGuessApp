@@ -2,7 +2,13 @@ import { Pressable, Text, StyleSheet } from 'react-native';
 
 function GameButton({ children, onPress }) {
   return (
-    <Pressable style={styles.buttonContainer} onPress={onPress}>
+    <Pressable
+      style={({ pressed }) => [
+        styles.buttonContainer,
+        pressed ? styles.buttonPressed : null
+      ]}
+      onPress={onPress}
+    >
       <Text style={styles.buttonText}>{children}</Text>
     </Pressable>
   );
@@ -18,6 +24,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 8,
+  },
+  buttonPressed: {
+    opacity: 0.75,
   },
   buttonText: {
     textAlign: 'center',
