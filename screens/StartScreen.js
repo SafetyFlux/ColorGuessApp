@@ -5,7 +5,7 @@ import GameButton from '../components/ui/GameButton';
 
 function StartScreen() {
   function startGameHandler() {
-    console.log('Pressed!');
+    
   }
 
   return (
