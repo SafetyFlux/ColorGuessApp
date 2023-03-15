@@ -20,7 +20,7 @@ export default GameButton;
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: 'white',
-    marginVertical: 16,
+    marginTop: 16,
     padding: 16,
     borderWidth: 2,
     borderColor: 'black',
