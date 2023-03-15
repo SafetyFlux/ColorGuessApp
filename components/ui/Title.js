@@ -1,6 +1,7 @@
 import { Text, StyleSheet } from 'react-native';
 
 function Title({ children }) {
+  // Returns text with a large, bold style
   return (
     <Text style={styles.title}>{children}</Text>
   );

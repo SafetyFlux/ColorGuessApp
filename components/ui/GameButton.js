@@ -1,6 +1,7 @@
 import { Pressable, Text, StyleSheet } from 'react-native';
 
 function GameButton({ children, onPress }) {
+  // Returns a pressable with a white background and black border, containing text
   return (
     <Pressable
       style={({ pressed }) => [
