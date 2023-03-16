@@ -3,40 +3,29 @@ import { View, TextInput, StyleSheet } from 'react-native';
 
 import ValueButton from './ValueButton';
 
-function ValueInput({ type, onValueChange }) {
+function ValueInput({ type, textColor, min, max, onValueChange }) {
   // Create state for text input
   const [inputText, setInputText] = useState('0');
 
-  // Set text color based on type
-  function getTextColor() {
-    if (type === 'red') {
-      return '#cc0000';
-    } else if (type === 'green') {
-      return '#00cc00';
-    } else if (type === 'blue') {
-      return '#0000cc';
-    } else {
-      return 'black';
-    }
-  }
-  const textColor = {
-    color: getTextColor(),
+  // Set text color style from prop
+  const textStyle = {
+    color: textColor,
   };
 
   // When text is changed or either button is pressed, call a function within the game screen
   function inputHandler(enteredText) {
     setInputText(enteredText);
     const newVal = parseInt(enteredText);
-    if (!isNaN(newVal) && 0 <= newVal <= 255) {
+    if (!isNaN(newVal) && min <= newVal <= max) {
       onValueChange(type, newVal);
     }
   }
   function buttonHandler(incr) {
     const newVal = parseInt(inputText) + incr;
-    if (newVal < 0) {
-      onValueChange(type, 0);
-    } else if (newVal > 255) {
-      onValueChange(type, 255);
+    if (newVal < min) {
+      onValueChange(type, min);
+    } else if (newVal > max) {
+      onValueChange(type, max);
     } else {
       onValueChange(type, newVal);
       setInputText(String(newVal));
@@ -48,7 +37,7 @@ function ValueInput({ type, onValueChange }) {
     <View style={styles.inputContainer}>
       <ValueButton increment={-1} onPress={buttonHandler} >-</ValueButton>
       <TextInput
-        style={[styles.input, textColor]}
+        style={[styles.input, textStyle]}
         value={inputText}
         maxLength={3}
         keyboardType="number-pad"
