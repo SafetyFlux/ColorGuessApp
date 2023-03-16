@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Title from '../components/ui/Title';
 import GameButton from '../components/ui/GameButton';
 import ColorInfo from '../components/ui/ColorInfo';
+import ColorBox from '../components/ui/ColorBox';
 
 function EndScreen({ route, navigation }) {
   // Set color variables from route
@@ -20,11 +21,9 @@ function EndScreen({ route, navigation }) {
   // Calculate the total number of points
   function calculatePoints() {
     const rDiff = Math.abs(correctColor.r - guessedColor.r);
-    const gDiff = Math.abs(correctColor.g - guessedColor.b);
     const gDiff = Math.abs(correctColor.g - guessedColor.g);
     const bDiff = Math.abs(correctColor.b - guessedColor.b);
 
-    const points = 765 - (rDiff + gDiff + bDiff);
     const points = (rDiff + gDiff + bDiff);
     return points;
   }
@@ -36,8 +35,12 @@ function EndScreen({ route, navigation }) {
       <View style={styles.statsContainer}>
         <ColorInfo color={correctColor}>Correct Color</ColorInfo>
         <ColorInfo color={guessedColor}>Your Guess</ColorInfo>
+        <View style={styles.colorContainer}>
+          <ColorBox color={correctColor}>C</ColorBox>
+          <ColorBox color={guessedColor}>Y</ColorBox>
+        </View>
         <Text style={styles.pointsText}>
-          <Text style={styles.pointsTextBold}>Total Points:</Text> {calculatePoints()}
+          <Text style={styles.pointsTextBold}>Total Difference:</Text> {calculatePoints()}
         </Text>
       </View>
       <GameButton onPress={startGameHandler}>New Game</GameButton>
@@ -61,6 +64,12 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: 'black',
     borderRadius: 16,
+  },
+  colorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
   },
   pointsText: {
     fontWeight: 'normal',
