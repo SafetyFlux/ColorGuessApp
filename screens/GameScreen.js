@@ -86,9 +86,18 @@ function GameScreen({ navigation }) {
           <ColorContainer guessColor={guessBackground} />
         </View>
         <View style={styles.inputContainer}>
-          <ValueInput type="red" onValueChange={colorChangeHandler} />
-          <ValueInput type="green" onValueChange={colorChangeHandler} />
-          <ValueInput type="blue" onValueChange={colorChangeHandler} />
+          <ValueInput
+            type="red" textColor="#cc0000" min={0} max={255}
+            onValueChange={colorChangeHandler}
+          />
+          <ValueInput
+            type="green" textColor="#00cc00" min={0} max={255}
+            onValueChange={colorChangeHandler}
+          />
+          <ValueInput
+            type="blue" textColor="#0000cc" min={0} max={255}
+            onValueChange={colorChangeHandler}
+          />
         </View>
         <GameButton onPress={endGameHandler}>Guess!</GameButton>
       </View>
