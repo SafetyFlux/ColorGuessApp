@@ -21,9 +21,11 @@ function EndScreen({ route, navigation }) {
   function calculatePoints() {
     const rDiff = Math.abs(correctColor.r - guessedColor.r);
     const gDiff = Math.abs(correctColor.g - guessedColor.b);
+    const gDiff = Math.abs(correctColor.g - guessedColor.g);
     const bDiff = Math.abs(correctColor.b - guessedColor.b);
 
     const points = 765 - (rDiff + gDiff + bDiff);
+    const points = (rDiff + gDiff + bDiff);
     return points;
   }
 
